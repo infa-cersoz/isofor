@@ -105,7 +105,7 @@ iTree <- function(X, l) {
 #' \emph{ACM Trans. Knowl. Discov. Data}, vol. 6, no. 1, pp. 3:1-3:39, Mar. 2012.
 #'
 #' @export
-iForest <- function(X, nt=100, phi=256, seed=1234, multicore=FALSE) {
+iForest <- function(X, nt=100, phi=256, seed=1234, multicore=FALSE, n_cores=1) {
 
   set.seed(seed)
 
@@ -119,10 +119,9 @@ iForest <- function(X, nt=100, phi=256, seed=1234, multicore=FALSE) {
 
   if (multicore) {
     ncores <- detectCores()
-    if(ncores > 4){
-        ncores = ncores - 4
+    if(n_cores != 1){
+        ncores <- n_cores
     }
-
     sample_dfs <- replicate(nt, {X[sample(nrow(X), phi),]}, simplify = F)
     cl <- makeCluster(getOption("cl.cores", ncores))
     ##clusterExport(cl ,c('dpert','variable'))
