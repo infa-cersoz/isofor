@@ -120,7 +120,7 @@ iForest <- function(X, nt=100, phi=256, seed=1234, multicore=FALSE) {
   if (multicore) {
     ncores <- detectCores()
     if(ncores > 4){
-        ncores = ncores - 2
+        ncores = ncores - 4
     }
 
     sample_dfs <- replicate(nt, {X[sample(nrow(X), phi),]}, simplify = F)
