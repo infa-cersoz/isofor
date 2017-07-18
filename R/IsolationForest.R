@@ -114,8 +114,8 @@ iForest <- function(X, nt=100, phi=256, seed=1234, multicore=FALSE, n_cores=1) {
   if (!is.data.frame(X)) X <- as.data.frame(X)
 
   # Check that no single factor has > 32 levels
-  factor32 <- sapply(X, function(x) class(x) == "factor" & nlevels(x) > 32)
-  if(sum(factor32) > 0) stop("Can not handle categorical predictors with more than 32 categories.")
+  #factor32 <- sapply(X, function(x) class(x) == "factor" & nlevels(x) > 32)
+  #if(sum(factor32) > 0) stop("Can not handle categorical predictors with more than 32 categories.")
 
   if (multicore) {
     ncores <- detectCores()
